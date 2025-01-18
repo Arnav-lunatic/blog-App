@@ -3,17 +3,17 @@ import conf from "../conf/conf";
 
 interface post {
 	title: string;
-	slug?: string;
+	slug: string;
 	content: string;
 	featuredImg: string;
 	status: string;
-	userId?: string;
+	userId: string;
 }
 
 export class DbService {
-	client = new Client();
-	databases;
-	bucket;
+	client: Client = new Client();
+	databases!: Databases;
+	bucket!: Storage;
 
 	constructer() {
 		this.client.setProject(conf.appwriteProjectId);
@@ -75,7 +75,7 @@ export class DbService {
 
 	async listPost(query=[Query.equal('status', 'active')]) {
 		try {
-			return await this.databases.listDocument(
+			return await this.databases.listDocuments(
 				conf.appwriteDatabaseId,
 				conf.appwriteCollectionId,
 				query,
@@ -85,7 +85,7 @@ export class DbService {
 		}
 	}
 
-	async uploadFile(file:Blob) {
+	async uploadFile(file:File) {
 		try {
 			return await this.bucket.createFile(
 				conf.appwriteBuckerId,
