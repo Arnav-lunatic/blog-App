@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../store/store";
 import LogoutButton from "./LogoutButton";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; 
 
 export default function Header() {
 	const authStatus = useAppSelector((state) => state.auth.status);
